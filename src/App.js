@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Menu from './components/Menu/Menu';
-import ProductList from './components/ProductList/ProductList';
 import routes from './routes';
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom';
 class App extends Component {
@@ -34,5 +33,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

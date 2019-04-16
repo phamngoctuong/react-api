@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 class ProductItem extends Component {
     render() {
+        var {product, index} = this.props;
+        var statusName = product.status ? 'Còn hàng' : 'Hết hàng';
+        var statusClass = product.status ? 'success' : 'warning';
         return (
             <tr>
-                <td>1</td>
-                <td>abc</td>
-                <td>Iphone 5 Plus</td>
-                <td>500</td>
+                <td>{index + 1}</td>
+                <td>{product.id}</td>
+                <td>{product.name}</td>
+                <td>{product.price}</td>
                 <td>
-                    <span className="badge badge-danger">Hết hàng</span>
+                    <span className={`badger badge-${statusClass}`}>{statusName}</span>
                 </td>
                 <td>
                     <span className="badge badge-primary mr-1">Sửa</span>
