@@ -21,15 +21,25 @@ class ProductActionPage extends Component {
     };
     onSave = (event) => {
         event.preventDefault();
-        var {txtName, txtPrice, chkbStatus} = this.state;
+        var {id, txtName, txtPrice, chkbStatus} = this.state;
         var {history} = this.props;
-        apiCaller('products','POST',{
-            name: txtName,
-            price: txtPrice,
-            status: chkbStatus
-        }).then(respon => {
-            history.goBack();
-        });
+        if(id) {
+            apiCaller(`products/${id}`,'PUT',{
+                name: txtName,
+                price: txtPrice,
+                status: chkbStatus
+            }).then(respon => {
+                history.goBack();
+            });
+        }else{
+            apiCaller('products','POST',{
+                name: txtName,
+                price: txtPrice,
+                status: chkbStatus
+            }).then(respon => {
+                history.goBack();
+            });
+        }
     };
     componentDidMount(){
         var {match} = this.props;
