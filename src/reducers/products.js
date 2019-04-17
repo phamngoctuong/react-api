@@ -14,8 +14,14 @@ var initialState = [
     },
     {
         id: 3,
-        name: "Iphone 86 Plus",
+        name: "Iphone 8 Plus",
         price: 800,
+        status: true
+    },
+    {
+        id: 4,
+        name: "Iphone 9 Plus",
+        price: 900,
         status: true
     }
 ];

@@ -30,6 +30,21 @@ class ProductActionPage extends Component {
         }).then(respon => {
             history.goBack();
         });
+    };
+    componentDidMount(){
+        var {match} = this.props;
+        if(match){
+            var id = match.params.id;
+            apiCaller(`products/${id}`,'GET',null).then(respon => {
+                var data = respon.data;
+                this.setState({
+                    id: data.id,
+                    txtName: data.name,
+                    txtPrice: data.price,
+                    chkbStatus: data.status
+                })
+            });
+        }
     }
     render() {
         var {txtName, txtPrice, chkbStatus} = this.state;
@@ -63,6 +78,7 @@ class ProductActionPage extends Component {
                                 value={chkbStatus} 
                                 name="chkbStatus"
                                 onChange={this.onChange}
+                                checked={chkbStatus}
                             /> Còn hàng
                         </label>
                     </div>

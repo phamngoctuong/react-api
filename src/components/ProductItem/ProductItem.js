@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 class ProductItem extends Component {
     onDelete = (id) => {
         if(confirm('Bạn chắc chắn muốn xoá?')) {//eslint-disable-line
@@ -19,7 +20,10 @@ class ProductItem extends Component {
                     <span className={`badger badge-${statusClass}`}>{statusName}</span>
                 </td>
                 <td>
-                    <span className="badge badge-primary mr-1">Sửa</span>
+                    <Link
+                        className="badge badge-primary mr-1"
+                        to = {`/product/${product.id}/edit`}
+                    >Sửa</Link>
                     <span 
                         className="badge badge-danger"
                         onClick = {()=>this.onDelete(product.id)}
