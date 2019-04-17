@@ -1,3 +1,4 @@
+import * as types from './../constants/ActionTypes';
 var initialState = [
     {
         id: 1,
@@ -13,7 +14,7 @@ var initialState = [
     },
     {
         id: 3,
-        name: "Iphone 8 Plus",
+        name: "Iphone 86 Plus",
         price: 800,
         status: true
     }
