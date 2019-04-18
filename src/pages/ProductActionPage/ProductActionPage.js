@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import apiCaller from './../../utils/apiCaller';
 import {Link} from 'react-router-dom';
-import {actAddProductRequest, actGetProductRequest} from './../../actions/index';
+import {actAddProductRequest, actGetProductRequest, actUpdateProductRequest} from './../../actions/index';
 import {connect} from 'react-redux';
 class ProductActionPage extends Component {
     constructor(props)  {
@@ -32,17 +32,11 @@ class ProductActionPage extends Component {
             status: chkbStatus
         };
         if(id) {
-            apiCaller(`products/${id}`,'PUT',{
-                name: txtName,
-                price: txtPrice,
-                status: chkbStatus
-            }).then(respon => {
-                history.goBack();
-            });
+           this.props.onUpdateProduct(product);
         }else{
             this.props.ondAddProduct(product);
-            history.goBack();
         }
+        history.goBack();
     };
     componentDidMount(){
         var {match} = this.props;
@@ -117,6 +111,9 @@ var mapDispatchToProps = (dispatch,props) => {
         },
         onEditProduct: (id) => {
             dispatch(actGetProductRequest(id));
+        },
+        onUpdateProduct: (product) => {
+            dispatch(actUpdateProductRequest(product));
         }
     }
 }
