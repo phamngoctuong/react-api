@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import apiCaller from './../../utils/apiCaller';
-import {actFetchProducts} from './../../actions/index';
+import {actFetchProductsRequest} from './../../actions/index';
 class ProductListPage extends Component {
     constructor(props) {
         super(props);
@@ -14,9 +14,7 @@ class ProductListPage extends Component {
         }
     }
     componentDidMount(){
-        apiCaller('products','GET',null).then(respon=>{
-            this.props.fetchAllProducts(respon.data);
-        });
+        this.props.fetchAllProducts();
     }
     findIndex = (products,id) => {
         var result = -1;
@@ -79,8 +77,8 @@ var mapStateToProps = state => {
 }
 var mapDispatchToProps = (dispatch,props) => {
     return {
-        fetchAllProducts: (products) => {
-            dispatch(actFetchProducts(products));
+        fetchAllProducts: () => {
+            dispatch(actFetchProductsRequest());
         }
     }
 }
