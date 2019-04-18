@@ -28,9 +28,9 @@ export const actDeleteProduct = (id) => {
 }
 export const actAddProductRequest = (product) => {
     return (dispatch) => {
-        return apiCaller(`products`,'POST',product).then(respon => {
-            dispatch(actAddProduct(respon.id));
-        })
+        return apiCaller('products','POST',product).then(respon => {
+            dispatch(actAddProduct(respon.data));
+        });
     }
 }
 export const actAddProduct = (product) => {

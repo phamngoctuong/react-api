@@ -1,5 +1,5 @@
 import * as types from './../constants/ActionTypes';
-findIndex = (products,id) => {
+var findIndex = (products,id) => {
     var result = -1;
     products.forEach((product,index)=>{
         if(product.id === id) {
@@ -21,7 +21,7 @@ var products = (state=initialState, action) => {
         state.splice(index,1);
         return [...state];
         case types.ADD_PRODUCT :
-        state.push(actions.product);
+        state.push(action.product);
         return [...state];
         default: 
             return [...state];

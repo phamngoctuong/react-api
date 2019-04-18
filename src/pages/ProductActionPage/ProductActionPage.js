@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import apiCaller from './../../utils/apiCaller';
 import {Link} from 'react-router-dom';
-import {actAddProductRequest} from './../actions/index';
+import {actAddProductRequest} from './../../actions/index';
 import {connect} from 'react-redux';
 class ProductActionPage extends Component {
     constructor(props)  {
@@ -25,6 +25,12 @@ class ProductActionPage extends Component {
         event.preventDefault();
         var {id, txtName, txtPrice, chkbStatus} = this.state;
         var {history} = this.props;
+        var product = {
+            id:id,
+            name:txtName,
+            price: txtPrice,
+            status: chkbStatus
+        };
         if(id) {
             apiCaller(`products/${id}`,'PUT',{
                 name: txtName,
@@ -97,10 +103,10 @@ class ProductActionPage extends Component {
     }
 }
 var mapDispatchToProps = (dispatch,props) => {
-    return(
+    return {
         ondAddProduct: (product) => {
             dispatch(actAddProductRequest(product));
         }
-    )
+    }
 }
 export default connect(null,mapDispatchToProps)(ProductActionPage);
