@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import apiCaller from './../../utils/apiCaller';
 import {Link} from 'react-router-dom';
+import {actAddProductRequest} from './../actions/index';
+import {connect} from 'react-redux';
 class ProductActionPage extends Component {
     constructor(props)  {
         super(props);
@@ -32,13 +34,8 @@ class ProductActionPage extends Component {
                 history.goBack();
             });
         }else{
-            apiCaller('products','POST',{
-                name: txtName,
-                price: txtPrice,
-                status: chkbStatus
-            }).then(respon => {
-                history.goBack();
-            });
+            this.props.ondAddProduct(product);
+            history.goBack();
         }
     };
     componentDidMount(){
@@ -99,4 +96,11 @@ class ProductActionPage extends Component {
         );
     }
 }
-export default ProductActionPage;
+var mapDispatchToProps = (dispatch,props) => {
+    return(
+        ondAddProduct: (product) => {
+            dispatch(actAddProductRequest(product));
+        }
+    )
+}
+export default connect(null,mapDispatchToProps)(ProductActionPage);

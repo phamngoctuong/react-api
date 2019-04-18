@@ -26,3 +26,16 @@ export const actDeleteProduct = (id) => {
         id
     }
 }
+export const actAddProductRequest = (product) => {
+    return (dispatch) => {
+        return apiCaller(`products`,'POST',product).then(respon => {
+            dispatch(actAddProduct(respon.id));
+        })
+    }
+}
+export const actAddProduct = (product) => {
+    return {
+        type: types.ADD_PRODUCT,
+        product
+    }
+}

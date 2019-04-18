@@ -20,6 +20,9 @@ var products = (state=initialState, action) => {
         index = findIndex(state,action.id);
         state.splice(index,1);
         return [...state];
+        case types.ADD_PRODUCT :
+        state.push(actions.product);
+        return [...state];
         default: 
             return [...state];
         break;
