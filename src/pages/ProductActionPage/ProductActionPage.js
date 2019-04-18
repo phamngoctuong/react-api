@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import apiCaller from './../../utils/apiCaller';
 import {Link} from 'react-router-dom';
-import {actAddProductRequest} from './../../actions/index';
+import {actAddProductRequest, actGetProductRequest} from './../../actions/index';
 import {connect} from 'react-redux';
 class ProductActionPage extends Component {
     constructor(props)  {
@@ -48,14 +48,17 @@ class ProductActionPage extends Component {
         var {match} = this.props;
         if(match){
             var id = match.params.id;
-            apiCaller(`products/${id}`,'GET',null).then(respon => {
-                var data = respon.data;
-                this.setState({
-                    id: data.id,
-                    txtName: data.name,
-                    txtPrice: data.price,
-                    chkbStatus: data.status
-                })
+            this.props.onEditProduct(id);
+        }
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps && nextProps.itemEditing){
+            var {itemEditing} = nextProps;
+            this.setState({
+                id : itemEditing.id,
+                txtName : itemEditing.name,
+                txtPrice : itemEditing.price,
+                chkbStatus : itemEditing.status
             });
         }
     }
@@ -102,11 +105,19 @@ class ProductActionPage extends Component {
         );
     }
 }
+const mapStateToProps = state => {
+    return {
+        itemEditing : state.itemEditing
+    }
+}
 var mapDispatchToProps = (dispatch,props) => {
     return {
         ondAddProduct: (product) => {
             dispatch(actAddProductRequest(product));
+        },
+        onEditProduct: (id) => {
+            dispatch(actGetProductRequest(id));
         }
     }
 }
-export default connect(null,mapDispatchToProps)(ProductActionPage);
+export default connect(mapStateToProps,mapDispatchToProps)(ProductActionPage);

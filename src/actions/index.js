@@ -39,3 +39,16 @@ export const actAddProduct = (product) => {
         product
     }
 }
+export const actGetProductRequest = (id) => {
+    return (dispatch) => {
+        return apiCaller(`products/${id}`,'GET',null).then(respon => {
+            dispatch(actGetProduct(respon.data));
+        });
+    }
+}
+export const actGetProduct = (product) => {
+    return {
+        type: types.EDIT_PRODUCT,
+        product
+    }
+}

@@ -1,6 +1,6 @@
-import * as types from './../constants/ActionTypes';
+import * as types from '../constants/ActionTypes';
 var initialState = {};
-var itemEditting = (state=initialState, action) => {
+var itemEditing = (state=initialState, action) => {
     switch (action.type) {
         case types.EDIT_PRODUCT : 
             return action.product;
@@ -10,4 +10,4 @@ var itemEditting = (state=initialState, action) => {
         break;
     }
 };
-export default itemEditting;
+export default itemEditing;
