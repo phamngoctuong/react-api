@@ -1,8 +1,8 @@
 import React from 'react';
 import HomePage from './pages/HomePage/HomePage';
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProductListPage from './pages/ProductListPage/ProductListPage';
 import ProductActionPage from './pages/ProductActionPage/ProductActionPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 var routes = [
     {
         path: '/',
@@ -22,7 +22,7 @@ var routes = [
     {
         path: '/product/:id/edit',
         exact: false,
-        main: ({match,history}) => <ProductActionPage match={match} history={history}></ProductActionPage>
+        main: ({history,match}) => <ProductActionPage history={history} match={match}></ProductActionPage>
     },
     {
         path: '',

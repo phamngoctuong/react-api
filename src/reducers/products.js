@@ -1,35 +1,27 @@
-import * as types from './../constants/ActionTypes';
-var findIndex = (products,id) => {
-    var result = -1;
-    products.forEach((product,index)=>{
-        if(product.id === id) {
-            result = index;
-        }
-    })
-    return result;
-};
-var initialState = [];
-var products = (state=initialState, action) => {
-    var index = -1;
-    var {product} = action;
-    switch (action.type) {
-        case types.FETCH_PRODUCTS : 
-        state = action.products;
+var initialState = [
+    {
+        id:1,
+        name: "Iphone 5 Plus",
+        price: 500,
+        status: true
+    },
+    {
+        id:2,
+        name: "Iphone 5 Plus",
+        price: 500,
+        status: false
+    },
+    {
+        id:3,
+        name: "Iphone 6 Plus",
+        price: 600,
+        status: false
+    }
+];
+var products = (state=initialState,action) => {
+    switch(action.type) {
+        default:
         return [...state];
-        break;
-        case types.DELETE_PRODUCT : 
-        index = findIndex(state,action.id);
-        state.splice(index,1);
-        return [...state];
-        case types.ADD_PRODUCT :
-        state.push(action.product);
-        return [...state];
-        case types.UPDATE_PRODUCT:
-        index = findIndex(state,product.id);
-        state[index] = product;
-        return [...state];
-        default: 
-            return [...state];
         break;
     }
 };

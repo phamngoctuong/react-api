@@ -1,11 +1,11 @@
-import axios from 'axios';
 import * as Config from './../constants/Config';
-export default function callApi(enpoint,method='GET',body){
+import axios from 'axios';
+export default function apiCaller(endpoint,method,body){
     return axios({
         method: method,
-        url: `${Config.API_URL}/${enpoint}`,
+        url: `${Config.API_URL}/${endpoint}`,
         data: body
     }).catch(error => {
         console.log(error);
     });
-};
+}
